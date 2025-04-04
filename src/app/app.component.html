@@ -1,0 +1,32 @@
+<!-- <ngx-extended-pdf-viewer 
+[src]="'./assets/test.pdf'"
+  useBrowserLocale="true"
+  height="90vh"
+  [showToolbar]="true"
+  [showSidebarButton]="false"
+  [showFindButton]="false"
+  [showZoomButtons]="false"
+  [showPresentationModeButton]="false"
+  [showOpenFileButton]="false"
+  [showPrintButton]="false"
+  [showDownloadButton]="false"
+  [showSecondaryToolbarButton]="false"
+  [showRotateButton]="false"
+  [showHandToolButton]="false"
+  [showSpreadButton]="false"
+  [showPropertiesButton]="false"
+  [showBorders]="false">
+</ngx-extended-pdf-viewer> -->
+
+<div class="pdf-container">
+  <pdf-viewer [src]="'assets/sample.pdf'" (after-load-complete)="onPdfLoadComplete($event)" [render-text]="true"
+    [show-all]="false" [page]="1" style="width: 100%; height: 90vh;">
+  </pdf-viewer>
+  @if(this.totalPages() && this.totalPages() > 0){
+  <p style="height: 10vh; width: 100%; background-color: red; color: black;">
+    {{this.totalPages()}}
+  </p>
+  }
+
+
+</div>
