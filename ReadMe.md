@@ -44,14 +44,14 @@
 
 ## **🌟 Summary**
 First architectures is designed for **fast development** and **low-scale usage** with:
-✅ - Direct Priority ERP API calls.
-✅ - PostgreSQL for persistence.
-✅ - WebSockets for real-time updates.
-✅ - A simple yet scalable Nest.js backend.
+✅ Direct Priority ERP API calls.
+✅ PostgreSQL for persistence.
+✅ WebSockets for real-time updates.
+✅ A simple yet scalable Nest.js backend.
 
 Second architectures is designed for a **robust system** of many concurrent users with:
-✅ - Separate APIs to communicate with Priority ERP.
-✅ - Kuberenetes and Docker to manage containers.
-✅ - RabbitMQ to manage load.
-✅ - Nginx to distribute requests across nodes. 
-✅ - Multiple nodes of each application, to support increasing number of users.
+✅ Separate APIs to communicate with Priority ERP.
+✅ Kuberenetes and Docker to manage containers.
+✅ RabbitMQ to manage load.
+✅ Nginx to distribute requests across nodes. 
+✅ Multiple nodes of each application, to support increasing number of users.
