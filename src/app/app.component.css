@@ -21,3 +21,7 @@ swiper-container::part(bullet) {
   opacity: 1;
   margin-bottom: 5px;
 }
+
+pdf-viewer{
+  width: 100vw; height: 100vh; object-fit: contain;
+}

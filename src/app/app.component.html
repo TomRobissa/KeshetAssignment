@@ -8,9 +8,9 @@
         (after-load-complete)="onPdfLoadComplete($event)"
         [render-text]="true"
         [show-all]="false"
-        [original-size]="true"
+        [original-size]="false"
+        [autoresize]="true"
         [page]="currentPage"
-        style="width: 100vw; height: 100vh; object-fit: contain;"
       >
       </pdf-viewer>
     </swiper-slide>
