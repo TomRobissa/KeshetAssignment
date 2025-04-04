@@ -1,5 +1,3 @@
-# 📌 Low-Scale, Fast Development System
-
 ## **🛠 Technology Choices & Justification**
 
 ### **Frontend: Angular 2**
@@ -25,7 +23,6 @@
 - **Direct API calls** simplify the architecture. Scale to message queues if required.
 
 ### **WebSockets for Real-Time Updates**
-✅ **Why WebSockets instead of SSE (server-only updates) or Polling?**
 1. **Low Latency:** WebSockets **establish a persistent connection**, reducing request overhead.
 2. **Bi-Directional Communication:** WebSockets allow two-way communication. 
 3. **Better Performance:** Polling creates **unnecessary load** by making frequent requests. WebSockets **only send data when needed**.
@@ -47,14 +44,14 @@
 
 ## **🌟 Summary**
 First architectures is designed for **fast development** and **low-scale usage** with:
-✅ Direct Priority ERP API calls.
-✅ PostgreSQL for persistence.
-✅ WebSockets for real-time updates.
-✅ A simple yet scalable Nest.js backend.
+✅ - Direct Priority ERP API calls.
+✅ - PostgreSQL for persistence.
+✅ - WebSockets for real-time updates.
+✅ - A simple yet scalable Nest.js backend.
 
 Second architectures is designed for a **robust system** of many concurrent users with:
-✅ Separate APIs to communicate with Priority ERP.
-✅ Kuberenetes and Docker to manage containers.
-✅ RabbitMQ to manage load.
-✅ Nginx to distribute requests across nodes. 
-✅ Multiple nodes of each application, to support increasing number of users.
+✅ - Separate APIs to communicate with Priority ERP.
+✅ - Kuberenetes and Docker to manage containers.
+✅ - RabbitMQ to manage load.
+✅ - Nginx to distribute requests across nodes. 
+✅ - Multiple nodes of each application, to support increasing number of users.
