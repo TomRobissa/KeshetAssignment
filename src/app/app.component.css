@@ -1,0 +1,23 @@
+swiper-slide {
+  height: 10vh;
+  width: 100%;
+  color: black;
+}
+
+swiper-container ::part(pagination) {
+    display: flex;
+    flex-direction: row-reverse;  /* This will make the bullets go from right to left */
+  }
+
+swiper-container::part(bullet-active) {
+  transform: scale(1.7);
+  background: black;
+  margin-bottom: 5px;
+}
+
+swiper-container::part(bullet) {
+  transform: scale(1.2);
+  background: #8180a2; /* More defined grey */
+  opacity: 1;
+  margin-bottom: 5px;
+}

@@ -18,15 +18,19 @@
   [showBorders]="false">
 </ngx-extended-pdf-viewer> -->
 
-<div class="pdf-container">
-  <pdf-viewer [src]="'assets/sample.pdf'" (after-load-complete)="onPdfLoadComplete($event)" [render-text]="true"
-    [show-all]="false" [page]="1" style="width: 100%; height: 90vh;">
-  </pdf-viewer>
-  @if(this.totalPages() && this.totalPages() > 0){
-  <p style="height: 10vh; width: 100%; background-color: red; color: black;">
-    {{this.totalPages()}}
-  </p>
+<pdf-viewer
+  [src]="'assets/sample.pdf'"
+  (after-load-complete)="onPdfLoadComplete($event)"
+  [render-text]="true"
+  [show-all]="false"
+  [page]="1"
+  style="width: 100%; height: 90vh"
+>
+</pdf-viewer>
+<swiper-container slides-per-view="1" pagination="true" dir="rtl">
+  @for (swiperPage of this.totalPagesArray(); track swiperPage.page) {
+  <swiper-slide [class.active-slide]="swiperPage.page === activePage">
+    {{ swiperPage.page }}
+  </swiper-slide>
   }
-
-
-</div>
+</swiper-container>
