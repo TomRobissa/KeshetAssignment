@@ -4,11 +4,6 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PDFDocumentProxy } from 'pdfjs-dist/types/src/display/api';
 import { register } from 'swiper/element/bundle';
 
-type SwiperPage = {
-  page: number;
-  isSelected: boolean;
-};
-
 register();
 
 @Component({
@@ -20,21 +15,9 @@ register();
 })
 export class AppComponent {
   title = 'keshet-assignment-receipts';
-  totalPagesArray = signal<SwiperPage[]>([]);
-  activePage = 0;
+  totalPages = signal<number[]>([1]);
 
   onPdfLoadComplete(pdf: PDFDocumentProxy) {
-    this.totalPagesArray.set(
-      Array.from({ length: pdf.numPages }, (_, i) => {
-        return { page: i, isSelected: i === 0 };
-      })
-    );
-  }
-
-  onSlideChange(event: any) {
-    const swiper = event.target.swiper; // Get Swiper instance
-    console.dir(swiper);
-    this.activePage = swiper.activeIndex + 1; // Update active page
-    console.log(`Slide changed to: ${this.activePage}`);
+    this.totalPages.set(Array.from({ length: pdf.numPages }, (_, i) => i));
   }
 }

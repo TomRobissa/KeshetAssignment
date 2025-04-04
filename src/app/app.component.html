@@ -1,36 +1,24 @@
-<!-- <ngx-extended-pdf-viewer 
-[src]="'./assets/test.pdf'"
-  useBrowserLocale="true"
-  height="90vh"
-  [showToolbar]="true"
-  [showSidebarButton]="false"
-  [showFindButton]="false"
-  [showZoomButtons]="false"
-  [showPresentationModeButton]="false"
-  [showOpenFileButton]="false"
-  [showPrintButton]="false"
-  [showDownloadButton]="false"
-  [showSecondaryToolbarButton]="false"
-  [showRotateButton]="false"
-  [showHandToolButton]="false"
-  [showSpreadButton]="false"
-  [showPropertiesButton]="false"
-  [showBorders]="false">
-</ngx-extended-pdf-viewer> -->
-
-<pdf-viewer
-  [src]="'assets/sample.pdf'"
-  (after-load-complete)="onPdfLoadComplete($event)"
-  [render-text]="true"
-  [show-all]="false"
-  [page]="1"
-  style="width: 100%; height: 90vh"
->
-</pdf-viewer>
-<swiper-container slides-per-view="1" pagination="true" dir="rtl">
-  @for (swiperPage of this.totalPagesArray(); track swiperPage.page) {
-  <swiper-slide [class.active-slide]="swiperPage.page === activePage">
-    {{ swiperPage.page }}
-  </swiper-slide>
-  }
-</swiper-container>
+@if(this.totalPages().length > 0){
+  
+  <swiper-container slides-per-view="1" pagination="true" dir="rtl">
+    @for (currentPage of this.totalPages(); track currentPage) {
+      <swiper-slide>
+      <pdf-viewer
+        [src]="'assets/sample.pdf'"
+        (after-load-complete)="onPdfLoadComplete($event)"
+        [render-text]="true"
+        [show-all]="false"
+        [original-size]="true"
+        [page]="currentPage"
+        style="width: 100vw; height: 100vh; object-fit: contain;"
+      >
+      </pdf-viewer>
+    </swiper-slide>
+    }
+  </swiper-container>
+}
+@else {
+  <p>
+    Empty PDF
+  </p>
+}
