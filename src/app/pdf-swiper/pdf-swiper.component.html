@@ -5,11 +5,11 @@
         <swiper-slide>
         <pdf-viewer
           [src]="this.pdfUrl()"
-          (after-load-complete)="onPdfLoadComplete($event)"
+          (after-load-complete)="onPdfLoadComplete($event)" 
           [render-text]="true"
           [show-all]="false"
           [original-size]="false"
-          [autoresize]="true"
+          [fit-to-page]="true"
           [page]="currentPage"
         >
         </pdf-viewer>
