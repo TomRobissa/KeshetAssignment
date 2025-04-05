@@ -56,7 +56,7 @@
   width: fit-content;
 }
 
-.payment-table td small {
+.payment-table small {
   color: #777;
   font-size: 0.75rem;
 }
@@ -81,11 +81,12 @@
   background-color: #3b73ee;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  width: 95vw;
+  width: 95vw; /*TODO: width is still broken*/
   display: inline-table;
 }
-
-tr.selected-receipt-row * {
-  color: white!important;
-
+tr.selected-receipt-row small, tr.selected-receipt-row section, tr.selected-receipt-row td {
+  color: white;
+}
+tr.selected-receipt-row .next-arrow-container {
+  display: none;
 }
