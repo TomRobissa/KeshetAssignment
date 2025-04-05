@@ -1,0 +1,82 @@
+
+
+.payment-table table {
+  width: 100%;
+  table-layout: fixed;
+  background: white;
+  direction: rtl;
+
+}
+
+.payment-table thead {
+  background: #e3ecff;
+}
+
+.payment-table thead th {
+  text-align: right;
+  font-weight: bold;
+}
+
+.payment-table thead .amount-header {
+  width: 5%;
+  white-space: nowrap;
+}
+
+.payment-table tr{
+  height: 4rem;
+}
+
+.payment-table .cell-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.payment-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+
+.payment-table thead th,
+.payment-table tbody td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  vertical-align: middle; /* or top if you want the content aligned to the top */
+}
+
+
+.payment-table .amount-cell {
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.payment-table td small {
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.status-icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.icons {
+  font-size: 1rem;
+}
+.table-inner-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+

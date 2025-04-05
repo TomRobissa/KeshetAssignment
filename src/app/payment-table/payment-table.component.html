@@ -1,0 +1,47 @@
+<div class="payment-table">
+  <table cell-spacing="0">
+    <thead>
+      <tr>
+        <th>תיאור תעודה</th>
+        <th>ספק</th>
+        <th class="amount-header">עלות</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (payment of payments; track payment) {
+        <tr>
+          <td class="description-cell">
+            <section class="cell-container">
+              <span class="status-icon" (click)="cycleStatus(payment)">
+                {{ getStatusIcon(payment.status) }}
+              </span>
+              <section class="table-inner-column">
+                {{ payment.description }}
+                <br />
+                <small>01/01/2024</small>
+              </section>
+            </section>
+          </td>
+          <td class="supplier-cell">{{ payment.supplier }}</td>
+          <td class="amount-cell">
+            <section class="cell-container">
+              <section class="table-inner-column">
+                {{ payment.amount }} ש"ח
+                <br />
+                <small>4,500 ש"ח</small>
+              </section>
+              <section class="table-inner-column">
+                <span class="icons">⏳</span>
+                <small>2/5</small>
+              </section>
+              <section class="table-inner-column">    
+                <object class="icons" type="image/svg+xml" data="../../assets/arrow-left-3099.svg" width="8" height="8">
+                </object>
+              </section>
+            </section>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
