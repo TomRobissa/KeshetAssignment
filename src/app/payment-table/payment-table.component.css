@@ -1,11 +1,8 @@
-
-
 .payment-table table {
   width: 100%;
   table-layout: fixed;
   background: white;
   direction: rtl;
-
 }
 
 .payment-table thead {
@@ -17,12 +14,27 @@
   font-weight: bold;
 }
 
-.payment-table thead .amount-header {
-  width: 10%;
+.payment-table thead th.cost {
   white-space: nowrap;
 }
 
-.payment-table tr{
+.payment-table thead th.cost.table-only {
+  width: 6%;
+}
+
+.payment-table thead th.cost.table-pdf-preview-split {
+  width: 10%;
+}
+
+.payment-table thead th.description.table-only {
+  width: 60%;
+}
+
+.payment-table thead th.description.table-pdf-preview-split {
+  width: 30%;
+}
+
+.payment-table tr {
   height: 4rem;
 }
 
@@ -35,11 +47,9 @@
   gap: 0.5rem;
 }
 
-
 .payment-table tbody tr {
   border-bottom: 1px solid #ddd;
 }
-
 
 .payment-table thead th,
 .payment-table tbody td {
@@ -49,7 +59,6 @@
   padding-bottom: 0;
   vertical-align: middle; /* or top if you want the content aligned to the top */
 }
-
 
 .payment-table .amount-cell {
   white-space: nowrap;
@@ -63,12 +72,15 @@
 
 .status-icon {
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .icons {
   font-size: 1rem;
 }
-.table-inner-column{
+.table-inner-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,13 +88,14 @@
   gap: 0.5rem;
 }
 
-
-.selected-receipt-row{
+.selected-receipt-row {
   transform: scaleX(1.05);
   transform-origin: right;
 }
 
-tr.selected-receipt-row small, tr.selected-receipt-row section, tr.selected-receipt-row td {
+tr.selected-receipt-row small,
+tr.selected-receipt-row section,
+tr.selected-receipt-row td {
   color: white;
 }
 

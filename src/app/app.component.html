@@ -1,13 +1,14 @@
 
 @if(this.receiptsViewMode === 'table-only'){
-    <app-payment-table></app-payment-table>
+    <app-payment-table [viewMode]="this.receiptsViewMode"></app-payment-table>
 }
 @else {
     <div class="receipts-display-container">
-        <app-payment-table></app-payment-table>
+        <app-payment-table [viewMode]="this.receiptsViewMode"></app-payment-table>
         <app-pdf-swiper pdfUrl="../assets/Keshet - Home Assignment - Payment.pdf"/>
      </div>
 }
+
 
  <section class="view-mode-section">
     <button (click)="this.receiptsViewMode = 'table-only';">Table View</button>

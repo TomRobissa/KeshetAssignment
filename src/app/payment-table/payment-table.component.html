@@ -2,17 +2,17 @@
   <table cell-spacing="0">
     <thead>
       <tr>
-        <th>תיאור תעודה</th>
-        <th>ספק</th>
-        <th class="amount-header">עלות</th>
+        <th [class]="[this.viewMode(),'description']">תיאור תעודה</th>
+        <th >ספק</th>
+        <th [class]="[this.viewMode(),'cost']">עלות</th>
       </tr>
     </thead>
     <tbody>
-      @for (payment of payments; track payment) {
-        <tr [class.selected-receipt-row]="payment.id === 1">
+      @for (payment of payments(); track payment) {
+        <tr [class.selected-receipt-row]="payment.isSelected === true">
           <td class="description-cell">
             <section class="cell-container">
-              <span class="status-icon" (click)="cycleStatus(payment)" style="display: flex; flex-direction: column; justify-content: center;">
+              <span class="status-icon" (click)="cycleStatus(payment)">
                 <img [src]="getStatusIcon(payment)" alt="status icon" height="25" width="25"/>
               </span>              
               <section class="table-inner-column">

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
+import { ReceiptsViewMode } from '../../shared/ReceiptViewMode';
 
 type PaymentStatus = 'pending' | 'approved' | 'rejected';
 
@@ -21,8 +22,8 @@ interface PaymentSelection extends Payment {
   styleUrls: ['./payment-table.component.css']
 })
 export class PaymentTableComponent {
-  payments  : PaymentSelection[]= [
-    { id: 1, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : true },
+  payments = signal<PaymentSelection[]>([
+    { id: 1, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : false },
     {  id: 2, status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500,isSelected : false },
     { id: 3,  status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500,isSelected : false },
     {  id: 4, status: 'pending', description: 'יום צילום', supplier: 'ספק ד', amount: 500,isSelected : false },
@@ -37,7 +38,24 @@ export class PaymentTableComponent {
     { id: 13, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : false },
     {  id: 14, status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500,isSelected : false },
     { id: 15,  status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500,isSelected : false },
-  ];
+  ]);
+  viewMode = input.required<ReceiptsViewMode>();
+
+  ngOnInit(){
+    if (this.viewMode() === 'table-only'){
+      const selectedPayment = this.payments().find(p => p.isSelected === true);
+      if (selectedPayment){
+        selectedPayment.isSelected = false;
+        this.payments.set([
+          ...this.payments(),
+          selectedPayment
+        ])
+      }
+    }
+    else {
+      this.payments()[0].isSelected = true;
+    }
+  }
 
   getStatusIcon(payment: PaymentSelection): string {
     let selectedRowSVGColor = '';

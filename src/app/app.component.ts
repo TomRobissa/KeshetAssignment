@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { PdfSwiperComponent } from './pdf-swiper/pdf-swiper.component';
 import { PaymentTableComponent } from "./payment-table/payment-table.component";
+import { ReceiptsViewMode } from '../shared/ReceiptViewMode';
 
 register();
 
@@ -13,5 +14,5 @@ register();
 })
 export class AppComponent {
   title = 'keshet-assignment-receipts';
-   receiptsViewMode: 'table-only' |  'table-pdf-preview-split' = 'table-only';
+  receiptsViewMode: ReceiptsViewMode = 'table-only';
 }

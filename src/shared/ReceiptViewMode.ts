@@ -1,0 +1,1 @@
+export type ReceiptsViewMode = 'table-only' |  'table-pdf-preview-split';
