@@ -81,6 +81,7 @@
   transform: scaleX(1.05);
   transform-origin: right;
 }
+
 tr.selected-receipt-row small, tr.selected-receipt-row section, tr.selected-receipt-row td {
   color: white;
 }
