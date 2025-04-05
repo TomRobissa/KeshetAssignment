@@ -1,25 +1,20 @@
 @if(this.totalPages().length > 0){
-  
-    <swiper-container slides-per-view="1" pagination="true" dir="rtl">
-      @for (currentPage of this.totalPages(); track currentPage) {
+  <div class="pdf-swiper-container-alignment">
+    <section class="pdf-swiper-container">
+      <swiper-container slides-per-view="1" pagination="true" dir="rtl" >
+        @for (currentPage of this.totalPages(); track currentPage) {
         <swiper-slide>
-        <pdf-viewer
-          [src]="this.pdfUrl()"
-          (after-load-complete)="onPdfLoadComplete($event)" 
-          [render-text]="true"
-          [show-all]="false"
-          [original-size]="false"
-          [fit-to-page]="true"
-          [page]="currentPage"
-        >
-        </pdf-viewer>
-      </swiper-slide>
-      }
-    </swiper-container>
-  }
-  @else {
-    <p>
-      Empty PDF
-    </p>
-  }
-  
+          <pdf-viewer [src]="this.pdfUrl()" (after-load-complete)="onPdfLoadComplete($event)" [render-text]="true"
+            [show-all]="false" [original-size]="false" [page]="currentPage">
+          </pdf-viewer>
+        </swiper-slide>
+        }
+      </swiper-container>
+    </section>
+  </div>
+}
+@else {
+<p>
+  Empty PDF
+</p>
+}

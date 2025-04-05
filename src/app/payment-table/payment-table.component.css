@@ -18,7 +18,7 @@
 }
 
 .payment-table thead .amount-header {
-  width: 5%;
+  width: 10%;
   white-space: nowrap;
 }
 
@@ -81,8 +81,6 @@
   background-color: #3b73ee;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  width: 95vw; /*TODO: width is still broken*/
-  display: inline-table;
 }
 tr.selected-receipt-row small, tr.selected-receipt-row section, tr.selected-receipt-row td {
   color: white;

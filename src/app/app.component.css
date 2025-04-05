@@ -1,0 +1,5 @@
+.receipts-display-container{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
