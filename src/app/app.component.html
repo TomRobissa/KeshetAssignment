@@ -4,8 +4,8 @@
 }
 @else {
     <div class="receipts-display-container">
-        <app-payment-table [viewMode]="this.receiptsViewMode"></app-payment-table>
-        <app-pdf-swiper pdfUrl="../assets/Keshet - Home Assignment - Payment.pdf"/>
+        <app-payment-table (payment-selected)="onPaymentSelected($event)" [viewMode]="this.receiptsViewMode"></app-payment-table>
+        <app-pdf-swiper [pdfUrl]="this.pdfPath()"/>
      </div>
 }
 

@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { PdfSwiperComponent } from './pdf-swiper/pdf-swiper.component';
 import { PaymentTableComponent } from "./payment-table/payment-table.component";
@@ -13,6 +13,16 @@ register();
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  
   title = 'keshet-assignment-receipts';
   receiptsViewMode: ReceiptsViewMode = 'table-only';
+  pdfFileName = signal<string>('');
+  pdfPath = computed(() => `../assets/${this.pdfFileName()}`);
+
+  onPaymentSelected(selectedPaymentFileName: string) {
+    this.pdfFileName.set(selectedPaymentFileName);
+  }
+
+  
+
 }

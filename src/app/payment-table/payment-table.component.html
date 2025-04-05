@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       @for (payment of payments(); track payment) {
-        <tr [class.selected-receipt-row]="payment.isSelected === true">
+        <tr [class.selected-receipt-row]="payment.id === this.selectedPaymentId()">
           <td class="description-cell">
             <section class="cell-container">
               <span class="status-icon" (click)="cycleStatus(payment)">
@@ -18,7 +18,7 @@
               <section class="table-inner-column">
                 {{ payment.description }}
                 <br />
-                <small>01/01/2024</small>
+                <small>{{payment.date}}</small>
               </section>
             </section>
           </td>
@@ -27,16 +27,16 @@
               {{ payment.supplier }}
             </section>
           </td>
-          <td class="amount-cell">
+          <td class="amount-cell" (click)="onPaymentSelected(payment.id)">
             <section class="cell-container">
               <section class="table-inner-column">
-                {{ payment.amount }} ש"ח
+                {{ payment.currentAmount }} ש"ח
                 <br />
-                <small>4,500 ש"ח</small>
+                <small>{{ payment.totalAmount }} ש"ח</small>
               </section>
               <section class="table-inner-column">
                 <span class="icons">⏳</span>
-                <small>2/5</small>
+                <small>{{payment.currentNumberOfPayments}}/{{payment.totalNumberOfPayments}}</small>
               </section>
               <section class="table-inner-column next-arrow-container" >    
                 <object class="icons" type="image/svg+xml" data="../../assets/arrow-left-3099.svg" width="8" height="8">

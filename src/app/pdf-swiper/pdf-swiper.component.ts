@@ -1,6 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, input, signal } from '@angular/core';
 import { PDFDocumentProxy, PdfViewerModule } from 'ng2-pdf-viewer';
-
 @Component({
   selector: 'app-pdf-swiper',
   imports: [PdfViewerModule], //chose ng2-pdf-viewer for simplicity
@@ -14,6 +13,6 @@ export class PdfSwiperComponent {
 
   //required for pagination pages iteration
   onPdfLoadComplete(pdf: PDFDocumentProxy) { 
-    this.totalPages.set(Array.from({ length: pdf.numPages }, (_, i) => i)); 
+      this.totalPages.set(Array.from({ length: pdf.numPages }, (_, i) => i)); 
   }
 }

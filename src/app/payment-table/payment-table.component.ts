@@ -1,72 +1,38 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { ReceiptsViewMode } from '../../shared/ReceiptViewMode';
-
-type PaymentStatus = 'pending' | 'approved' | 'rejected';
-
-interface Payment {
-  id : number,
-  status : PaymentStatus,
-  description: string,
-  supplier : string,
-  amount : number
-};
-
-
-interface PaymentSelection extends Payment {
-  isSelected : boolean
-}
+import { PAYMENTS } from './payments';
+import { Payment } from '../../shared/Payment';
+import { NotFoundError } from '@angular/core/primitives/di';
 
 @Component({
   selector: 'app-payment-table',
   templateUrl: './payment-table.component.html',
-  styleUrls: ['./payment-table.component.css']
+  styleUrls: ['./payment-table.component.css'],
 })
 export class PaymentTableComponent {
-  payments = signal<PaymentSelection[]>([
-    { id: 1, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : false },
-    {  id: 2, status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500,isSelected : false },
-    { id: 3,  status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500,isSelected : false },
-    {  id: 4, status: 'pending', description: 'יום צילום', supplier: 'ספק ד', amount: 500,isSelected : false },
-    {  id: 5, status: 'approved', description: 'יום צילום', supplier: 'ספק ה', amount: 500,isSelected : false },
-    {  id: 6, status: 'rejected', description: 'יום צילום', supplier: 'ספק ו', amount: 500,isSelected : false },
-    { id: 7, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : false },
-    {  id: 8, status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500,isSelected : false },
-    { id: 9,  status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500,isSelected : false },
-    {  id: 10, status: 'pending', description: 'יום צילום', supplier: 'ספק ד', amount: 500,isSelected : false },
-    {  id: 11, status: 'approved', description: 'יום צילום', supplier: 'ספק ה', amount: 500,isSelected : false },
-    {  id: 12, status: 'rejected', description: 'יום צילום', supplier: 'ספק ו', amount: 500,isSelected : false },
-    { id: 13, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : false },
-    {  id: 14, status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500,isSelected : false },
-    { id: 15,  status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500,isSelected : false },
-  ]);
+  payments = signal<Payment[]>(PAYMENTS);
+  selectedPaymentId = signal<number>(0);
   viewMode = input.required<ReceiptsViewMode>();
+  PaymentSelected = output<string>({alias: 'payment-selected'});
 
-  ngOnInit(){
-    if (this.viewMode() === 'table-only'){
-      const selectedPayment = this.payments().find(p => p.isSelected === true);
-      if (selectedPayment){
-        selectedPayment.isSelected = false;
-        this.payments.set([
-          ...this.payments(),
-          selectedPayment
-        ])
-      }
-    }
-    else {
-      this.payments()[0].isSelected = true;
+  ngOnInit() {
+    if (this.viewMode() === 'table-only') {
+      this.selectedPaymentId.set(0);
+    } else {
+      this.selectedPaymentId.set(1);
+      this.onPaymentSelected(1);
     }
   }
 
-  getStatusIcon(payment: PaymentSelection): string {
+  getStatusIcon(payment: Payment): string {
     let selectedRowSVGColor = '';
-    if (payment.isSelected){
+    if (payment.id === this.selectedPaymentId()) {
       selectedRowSVGColor = '_white';
     }
     return `../../assets/${payment.status}-status${selectedRowSVGColor}.svg`;
   }
-  
 
-  cycleStatus(payment: PaymentSelection): void {
+  cycleStatus(payment: Payment): void {
     switch (payment.status) {
       case 'pending':
         payment.status = 'approved';
@@ -78,5 +44,20 @@ export class PaymentTableComponent {
         payment.status = 'pending';
         break;
     }
+  }
+
+  onPaymentSelected(paymentId: number) {
+    if (this.viewMode() === 'table-only'){
+        return;
+    }
+    const paymentSelected = this.payments().find(p => p.id === paymentId);
+    if (!paymentSelected){
+      throw new NotFoundError(`Payment Id missing: ${paymentId}`);
+    }
+    this.selectedPaymentId.set(paymentId);
+    if (!paymentSelected.pdfUrl){
+      throw new NotFoundError(`Pdf missing for payment ${paymentId}`);
+    }
+    this.PaymentSelected.emit(paymentSelected.pdfUrl)
   }
 }
