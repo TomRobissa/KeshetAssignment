@@ -13,4 +13,5 @@ register();
 })
 export class AppComponent {
   title = 'keshet-assignment-receipts';
+   receiptsViewMode: 'table-only' |  'table-pdf-preview-split' = 'table-only';
 }

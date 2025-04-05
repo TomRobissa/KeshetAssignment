@@ -78,13 +78,22 @@
 
 
 .selected-receipt-row{
-  background-color: #3b73ee;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  transform: scaleX(1.05);
+  transform-origin: right;
 }
 tr.selected-receipt-row small, tr.selected-receipt-row section, tr.selected-receipt-row td {
   color: white;
 }
+
+tr.selected-receipt-row td {
+  background-color: #3b73ee;
+}
+
+tr.selected-receipt-row td:last-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
 tr.selected-receipt-row .next-arrow-container {
   display: none;
 }

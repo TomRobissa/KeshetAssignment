@@ -1,4 +1,15 @@
-<div class="receipts-display-container">
+
+@if(this.receiptsViewMode === 'table-only'){
     <app-payment-table></app-payment-table>
-    <app-pdf-swiper pdfUrl="assets/Keshet - Home Assignment - Payment.pdf"/>
- </div>
+}
+@else {
+    <div class="receipts-display-container">
+        <app-payment-table></app-payment-table>
+        <app-pdf-swiper pdfUrl="../assets/Keshet - Home Assignment - Payment.pdf"/>
+     </div>
+}
+
+ <section class="view-mode-section">
+    <button (click)="this.receiptsViewMode = 'table-only';">Table View</button>
+    <button (click)="this.receiptsViewMode = 'table-pdf-preview-split';">Split View</button>
+ </section> 
