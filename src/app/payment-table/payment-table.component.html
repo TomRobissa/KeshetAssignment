@@ -9,12 +9,12 @@
     </thead>
     <tbody>
       @for (payment of payments; track payment) {
-        <tr>
+        <tr [class.selected-receipt-row]="payment.id === 1">
           <td class="description-cell">
             <section class="cell-container">
-              <span class="status-icon" (click)="cycleStatus(payment)">
-                {{ getStatusIcon(payment.status) }}
-              </span>
+              <span class="status-icon" (click)="cycleStatus(payment)" style="display: flex; flex-direction: column; justify-content: center;">
+                <img [src]="getStatusIcon(payment)" alt="status icon" height="25" width="25"/>
+              </span>              
               <section class="table-inner-column">
                 {{ payment.description }}
                 <br />

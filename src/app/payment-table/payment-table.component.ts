@@ -1,29 +1,45 @@
 import { Component } from '@angular/core';
 
+type PaymentStatus = 'pending' | 'approved' | 'rejected';
+
+interface Payment {
+  id : number,
+  status : PaymentStatus,
+  description: string,
+  supplier : string,
+  amount : number
+};
+
+
+interface PaymentSelection extends Payment {
+  isSelected : boolean
+}
+
 @Component({
   selector: 'app-payment-table',
   templateUrl: './payment-table.component.html',
   styleUrls: ['./payment-table.component.css']
 })
 export class PaymentTableComponent {
-  payments = [
-    { status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500 },
-    { status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500 },
-    { status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500 },
-    { status: 'pending', description: 'יום צילום', supplier: 'ספק ד', amount: 500 },
-    { status: 'approved', description: 'יום צילום', supplier: 'ספק ה', amount: 500 },
-    { status: 'rejected', description: 'יום צילום', supplier: 'ספק ו', amount: 500 }
+  payments  : PaymentSelection[]= [
+    { id: 1, status: 'pending', description: 'יום צילום', supplier: 'ספק א', amount: 500,isSelected : true },
+    {  id: 2, status: 'approved', description: 'יום צילום', supplier: 'ספק ב', amount: 500,isSelected : false },
+    { id: 3,  status: 'rejected', description: 'יום צילום', supplier: 'ספק ג', amount: 500,isSelected : false },
+    {  id: 4, status: 'pending', description: 'יום צילום', supplier: 'ספק ד', amount: 500,isSelected : false },
+    {  id: 5, status: 'approved', description: 'יום צילום', supplier: 'ספק ה', amount: 500,isSelected : false },
+    {  id: 6, status: 'rejected', description: 'יום צילום', supplier: 'ספק ו', amount: 500,isSelected : false }
   ];
 
-  getStatusIcon(status: string): string {
-    switch (status) {
-      case 'approved': return '✅';
-      case 'rejected': return '❌';
-      default: return '⭕';
+  getStatusIcon(payment: PaymentSelection): string {
+    let selectedRowSVGColor = '';
+    if (payment.isSelected){
+      selectedRowSVGColor = '_white';
     }
+    return `../../assets/${payment.status}-status${selectedRowSVGColor}.svg`;
   }
+  
 
-  cycleStatus(payment: any): void {
+  cycleStatus(payment: PaymentSelection): void {
     switch (payment.status) {
       case 'pending':
         payment.status = 'approved';
