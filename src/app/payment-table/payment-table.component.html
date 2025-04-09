@@ -2,49 +2,65 @@
   <table cell-spacing="0">
     <thead>
       <tr>
-        <th [class]="[this.viewMode(),'description']">תיאור תעודה</th>
-        <th >ספק</th>
-        <th [class]="[this.viewMode(),'cost']">עלות</th>
+        <th [class]="[this.viewMode(), 'description']">תיאור תעודה</th>
+        <th>ספק</th>
+        <th [class]="[this.viewMode(), 'cost']">עלות</th>
       </tr>
     </thead>
     <tbody>
       @for (payment of payments(); track payment) {
-        <tr [class.selected-receipt-row]="payment.id === this.selectedPaymentId()">
-          <td class="description-cell">
-            <section class="cell-container">
-              <span class="status-icon" (click)="cycleStatus(payment)">
-                <img [src]="getStatusIcon(payment)" alt="status icon" height="25" width="25"/>
-              </span>              
-              <section class="table-inner-column">
-                {{ payment.description }}
-                <br />
-                <small>{{payment.date}}</small>
-              </section>
+      <tr
+        [class.selected-receipt-row]="payment.id === this.selectedPaymentId()"
+      >
+        <td class="description-cell">
+          <section class="cell-container">
+            <span class="status-icon" (click)="cycleStatus(payment)">
+              <img
+                [src]="getStatusIcon(payment)"
+                alt="status icon"
+                height="25"
+                width="25"
+              />
+            </span>
+            <section class="table-inner-column">
+              {{ payment.description }}
+              <br />
+              <small>{{ payment.date }}</small>
             </section>
-          </td>
-          <td class="supplier-cell">
-            <section class="cell-container">
-              {{ payment.supplier }}
+          </section>
+        </td>
+        <td class="supplier-cell">
+          <section class="cell-container">
+            {{ payment.supplier }}
+          </section>
+        </td>
+        <td class="amount-cell" (click)="onPaymentSelected(payment.id)">
+          <section class="cell-container">
+            <section class="table-inner-column">
+              {{ payment.currentAmount }} ש"ח
+              <br />
+              <small>{{ payment.totalAmount }} ש"ח</small>
             </section>
-          </td>
-          <td class="amount-cell" (click)="onPaymentSelected(payment.id)">
-            <section class="cell-container">
-              <section class="table-inner-column">
-                {{ payment.currentAmount }} ש"ח
-                <br />
-                <small>{{ payment.totalAmount }} ש"ח</small>
-              </section>
-              <section class="table-inner-column">
-                <span class="icons">⏳</span>
-                <small>{{payment.currentNumberOfPayments}}/{{payment.totalNumberOfPayments}}</small>
-              </section>
-              <section class="table-inner-column next-arrow-container" >    
-                <object class="icons" type="image/svg+xml" data="../../assets/arrow-left-3099.svg" width="8" height="8">
-                </object>
-              </section>
+            <section class="table-inner-column">
+              <span class="icons">⏳</span>
+              <small
+                >{{ payment.currentNumberOfPayments }}/{{
+                  payment.totalNumberOfPayments
+                }}</small
+              >
             </section>
-          </td>
-        </tr>
+            <section class="table-inner-column next-arrow-container">
+              <object
+                class="icons"
+                type="image/svg+xml"
+                data="../../assets/arrow-left-3099.svg"
+                width="8"
+                height="8"
+              ></object>
+            </section>
+          </section>
+        </td>
+      </tr>
       }
     </tbody>
   </table>

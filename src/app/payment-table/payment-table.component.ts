@@ -3,6 +3,7 @@ import { ReceiptsViewMode } from '../../shared/ReceiptViewMode';
 import { PAYMENTS } from './payments';
 import { Payment } from '../../shared/Payment';
 import { NotFoundError } from '@angular/core/primitives/di';
+import { PaymentsService } from '../services/payments.service';
 
 @Component({
   selector: 'app-payment-table',
@@ -10,16 +11,19 @@ import { NotFoundError } from '@angular/core/primitives/di';
   styleUrls: ['./payment-table.component.css'],
 })
 export class PaymentTableComponent {
-  payments = signal<Payment[]>(PAYMENTS);
-  selectedPaymentId = signal<number>(0);
   viewMode = input.required<ReceiptsViewMode>();
-  PaymentSelected = output<string>({alias: 'payment-selected'});
+  selectedPaymentId = signal<number>(0);
+  PaymentSelected = output<string>({ alias: 'payment-selected' });
+  payments = signal<Payment[]>([]);
+  constructor(private paymentsService: PaymentsService) {}
 
   ngOnInit() {
+    this.paymentsService.payments$.subscribe((newPayments) => {
+      this.payments.set(newPayments);
+    });
     if (this.viewMode() === 'table-only') {
       this.selectedPaymentId.set(0);
     } else {
-      this.selectedPaymentId.set(1);
       this.onPaymentSelected(1);
     }
   }
@@ -47,17 +51,17 @@ export class PaymentTableComponent {
   }
 
   onPaymentSelected(paymentId: number) {
-    if (this.viewMode() === 'table-only'){
-        return;
+    if (this.viewMode() === 'table-only') {
+      return;
     }
-    const paymentSelected = this.payments().find(p => p.id === paymentId);
-    if (!paymentSelected){
+    const paymentSelected = this.paymentsService.findPayment(paymentId);
+    if (!paymentSelected) {
       throw new NotFoundError(`Payment Id missing: ${paymentId}`);
     }
     this.selectedPaymentId.set(paymentId);
-    if (!paymentSelected.pdfUrl){
+    if (!paymentSelected.pdfUrl) {
       throw new NotFoundError(`Pdf missing for payment ${paymentId}`);
     }
-    this.PaymentSelected.emit(paymentSelected.pdfUrl)
+    this.PaymentSelected.emit(paymentSelected.pdfUrl);
   }
 }
