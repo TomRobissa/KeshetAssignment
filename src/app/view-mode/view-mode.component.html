@@ -1,0 +1,16 @@
+<section class="view-mode-section">
+  <img
+    (click)="this.onViewModeClicked('table-only')"
+    [class.active]="this.receiptsViewMode === 'table-only'"
+    src="../../assets/table-only_view-mode.svg"
+    width="64px"
+    height="64px"
+  />
+  <img
+    (click)="this.onViewModeClicked('table-pdf-preview-split')"
+    [class.active]="this.receiptsViewMode === 'table-pdf-preview-split'"
+    src="../../assets/table-pdf-preview-split_view-mode.svg"
+    width="64px"
+    height="64px"
+  />
+</section>

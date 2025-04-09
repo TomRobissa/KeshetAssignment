@@ -1,16 +1,13 @@
-
-@if(this.receiptsViewMode === 'table-only'){
-    <app-payment-table [viewMode]="this.receiptsViewMode"></app-payment-table>
+@if(this.receiptsViewMode() === 'table-only'){
+<app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
+} @else {
+<div class="receipts-display-container">
+  <app-payment-table
+    (payment-selected)="onPaymentSelected($event)"
+    [viewMode]="this.receiptsViewMode()"
+  ></app-payment-table>
+  <app-pdf-swiper [pdfUrl]="this.pdfPath()" />
+</div>
 }
-@else {
-    <div class="receipts-display-container">
-        <app-payment-table (payment-selected)="onPaymentSelected($event)" [viewMode]="this.receiptsViewMode"></app-payment-table>
-        <app-pdf-swiper [pdfUrl]="this.pdfPath()"/>
-     </div>
-}
 
-
- <section class="view-mode-section">
-    <button (click)="this.receiptsViewMode = 'table-only';">Table View</button>
-    <button (click)="this.receiptsViewMode = 'table-pdf-preview-split';">Split View</button>
- </section> 
+<app-view-mode (view-mode-change)="onViewModeChanged($event)"></app-view-mode>
