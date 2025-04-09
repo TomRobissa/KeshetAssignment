@@ -49,15 +49,25 @@ export class PaymentsService {
     if (!payment) {
       return;
     }
-    const previousStatus = payment.status;
+    const oldStatus = payment.status;
     this.cycleStatus(payment);
+    const newStatus = payment.status;
 
-    this.paymentStatusToSum.value[payment.status] += 1;
-    this.paymentStatusToSum.value[previousStatus] -= 1;
+    if (oldStatus === newStatus) return; // No change
+
+    // 3. Get the current status summary object
+    const currentSums = { ...this.paymentStatusToSum.value };
+
+    // 4. Decrement old status and increment new status
+    if (currentSums[oldStatus]) currentSums[oldStatus]--;
+    if (!currentSums[newStatus]) currentSums[newStatus] = 0;
+    currentSums[newStatus]++;
+
+    // 5. Emit the updated status counts
+    this.paymentStatusToSum.next(currentSums);
   }
 
   private cycleStatus(payment: Payment): void {
-    console.log(payment.status);
     switch (payment.status) {
       case 'pending':
         payment.status = 'pending-approval';
