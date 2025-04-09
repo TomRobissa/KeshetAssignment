@@ -1,4 +1,8 @@
-export type PaymentStatus = 'pending' | 'approved' | 'rejected';
+export type PaymentStatus =
+  | 'pending'
+  | 'approved'
+  | 'rejected'
+  | 'pending-approval';
 
 export interface Payment {
   id: number;

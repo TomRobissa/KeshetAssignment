@@ -10,13 +10,18 @@ import { PdfSwiperComponent } from './pdf-swiper/pdf-swiper.component';
 import { PaymentTableComponent } from './payment-table/payment-table.component';
 import { ReceiptsViewMode } from '../shared/ReceiptViewMode';
 import { ViewModeComponent } from './view-mode/view-mode.component';
-import { PaymentsService } from './services/payments.service';
+import { PaymentStatusSummaryComponent } from './payment-status-summary/payment-status-summary.component';
 
 register();
 
 @Component({
   selector: 'app-root',
-  imports: [PdfSwiperComponent, PaymentTableComponent, ViewModeComponent],
+  imports: [
+    PdfSwiperComponent,
+    PaymentTableComponent,
+    ViewModeComponent,
+    PaymentStatusSummaryComponent,
+  ],
   templateUrl: './app.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './app.component.css',

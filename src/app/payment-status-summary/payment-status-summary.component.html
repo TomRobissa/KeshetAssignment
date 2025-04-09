@@ -1,0 +1,8 @@
+<section class="payment-status-summary-section">
+  @for (status of paymentStatusToSum(); track status) {
+  <article class="status-sum-article">
+    <span> {{ paymentStatusToSum()[status] }} </span>
+    <p>{{ status }}</p>
+  </article>
+  }
+</section>

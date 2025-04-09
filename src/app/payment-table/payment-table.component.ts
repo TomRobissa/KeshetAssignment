@@ -33,21 +33,12 @@ export class PaymentTableComponent {
     ) {
       selectedRowSVGColor = '_white';
     }
-    return `../../assets/${payment.status}-status${selectedRowSVGColor}.svg`;
+    const svgPath = `../../assets/${payment.status}-status${selectedRowSVGColor}.svg`;
+    return svgPath;
   }
 
   cycleStatus(payment: Payment): void {
-    switch (payment.status) {
-      case 'pending':
-        payment.status = 'approved';
-        break;
-      case 'approved':
-        payment.status = 'rejected';
-        break;
-      case 'rejected':
-        payment.status = 'pending';
-        break;
-    }
+    this.paymentsService.changePaymentStatus(payment.id);
   }
 
   onPaymentSelected(paymentId: number) {
