@@ -5,13 +5,12 @@
       @for (currentPage of this.totalPages(); track currentPage) {
       <swiper-slide>
         <pdf-viewer
-          [src]="this.pdfUrl()"
+          [src]="this.pdfPath()"
           (after-load-complete)="onPdfLoadComplete($event)"
           [render-text]="true"
           [show-all]="false"
           [original-size]="false"
           [page]="currentPage"
-          [zoom]="1.1"
         >
         </pdf-viewer>
       </swiper-slide>

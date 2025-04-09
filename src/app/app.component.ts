@@ -21,17 +21,8 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   receiptsViewMode = signal<ReceiptsViewMode>('table-only');
-  pdfFileName = signal<string>('');
-  pdfPath = computed(() => `../assets/${this.pdfFileName()}`);
-
-  constructor(private PaymentsService: PaymentsService) {}
-  ngOnInit() {
-    this.PaymentsService.selectedPayment$.subscribe((newSelectedPayment) => {
-      this.pdfFileName.set(newSelectedPayment.pdfUrl);
-    });
-  }
 
   onViewModeChanged(viewMode: ReceiptsViewMode) {
     this.receiptsViewMode.set(viewMode);
