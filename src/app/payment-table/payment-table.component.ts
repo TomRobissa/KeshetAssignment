@@ -12,8 +12,7 @@ import { PaymentsService } from '../services/payments.service';
 })
 export class PaymentTableComponent {
   viewMode = input.required<ReceiptsViewMode>();
-  selectedPaymentId = signal<number>(0);
-  PaymentSelected = output<string>({ alias: 'payment-selected' });
+  selectedPaymentId = signal<number>(1);
   payments = signal<Payment[]>([]);
   constructor(private paymentsService: PaymentsService) {}
 
@@ -21,16 +20,17 @@ export class PaymentTableComponent {
     this.paymentsService.payments$.subscribe((newPayments) => {
       this.payments.set(newPayments);
     });
-    if (this.viewMode() === 'table-only') {
-      this.selectedPaymentId.set(0);
-    } else {
-      this.onPaymentSelected(1);
-    }
+    this.paymentsService.selectedPayment$.subscribe((newSelectedPayment) => {
+      this.selectedPaymentId.set(newSelectedPayment.id);
+    });
   }
 
   getStatusIcon(payment: Payment): string {
     let selectedRowSVGColor = '';
-    if (payment.id === this.selectedPaymentId()) {
+    if (
+      this.viewMode() === 'table-pdf-preview-split' &&
+      payment.id === this.selectedPaymentId()
+    ) {
       selectedRowSVGColor = '_white';
     }
     return `../../assets/${payment.status}-status${selectedRowSVGColor}.svg`;
@@ -54,14 +54,6 @@ export class PaymentTableComponent {
     if (this.viewMode() === 'table-only') {
       return;
     }
-    const paymentSelected = this.paymentsService.findPayment(paymentId);
-    if (!paymentSelected) {
-      throw new NotFoundError(`Payment Id missing: ${paymentId}`);
-    }
-    this.selectedPaymentId.set(paymentId);
-    if (!paymentSelected.pdfUrl) {
-      throw new NotFoundError(`Pdf missing for payment ${paymentId}`);
-    }
-    this.PaymentSelected.emit(paymentSelected.pdfUrl);
+    this.paymentsService.selectPayment(paymentId);
   }
 }

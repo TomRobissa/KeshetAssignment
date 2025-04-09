@@ -2,10 +2,7 @@
 <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
 } @else {
 <div class="receipts-display-container">
-  <app-payment-table
-    (payment-selected)="onPaymentSelected($event)"
-    [viewMode]="this.receiptsViewMode()"
-  ></app-payment-table>
+  <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
   <app-pdf-swiper [pdfUrl]="this.pdfPath()" />
 </div>
 }

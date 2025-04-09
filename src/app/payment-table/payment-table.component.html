@@ -10,7 +10,10 @@
     <tbody>
       @for (payment of payments(); track payment) {
       <tr
-        [class.selected-receipt-row]="payment.id === this.selectedPaymentId()"
+        [class.selected-receipt-row]="
+          this.viewMode() === 'table-pdf-preview-split' &&
+          payment.id === this.selectedPaymentId()
+        "
       >
         <td class="description-cell">
           <section class="cell-container">
