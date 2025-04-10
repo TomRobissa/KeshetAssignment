@@ -41,6 +41,7 @@ section.header-background-section {
 }
 .view-mode-container{
     background-color: #e5e9f2;
+    padding:5px;
 }
 
 .app-overlay-left-section{
