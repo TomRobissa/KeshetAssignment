@@ -3,12 +3,17 @@ import { PAYMENTS } from '../payment-table/payments';
 import { Payment, PaymentStatus } from '../../shared/Payment';
 import { BehaviorSubject } from 'rxjs';
 import { NotFoundError } from '@angular/core/primitives/di';
+import { Moment } from 'moment';
+import moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaymentsService {
-  private payments = new BehaviorSubject<Payment[]>(PAYMENTS);
+  private allPayments: Payment[] = PAYMENTS;
+  private allPaymentStatusToSum: Record<PaymentStatus, number> =
+    this.getPaymentsStatusToSum(this.allPayments);
+  private payments = new BehaviorSubject<Payment[]>(this.allPayments);
   payments$ = this.payments.asObservable();
   private selectedPayment = new BehaviorSubject<Payment>(
     this.payments.value[0]
@@ -17,8 +22,13 @@ export class PaymentsService {
 
   private paymentStatusToSum = new BehaviorSubject<
     Record<PaymentStatus, number>
-  >(
-    PAYMENTS.reduce((acc, payment) => {
+  >(this.allPaymentStatusToSum);
+  paymentStatusToSum$ = this.paymentStatusToSum.asObservable();
+
+  constructor() {}
+
+  getPaymentsStatusToSum(payments: Payment[]) {
+    return payments.reduce((acc, payment) => {
       // If the status does not exist in the accumulator, initialize it
       if (!acc[payment.status]) {
         acc[payment.status] = 0;
@@ -28,11 +38,8 @@ export class PaymentsService {
       acc[payment.status] += 1;
 
       return acc;
-    }, {} as Record<PaymentStatus, number>)
-  );
-  paymentStatusToSum$ = this.paymentStatusToSum.asObservable();
-
-  constructor() {}
+    }, {} as Record<PaymentStatus, number>);
+  }
 
   findPayment(paymentId: number) {
     return this.payments.value.find((p) => p.id === paymentId);
@@ -82,5 +89,43 @@ export class PaymentsService {
         payment.status = 'pending';
         break;
     }
+  }
+
+  private isTextMatch(input: string, searchText: string): boolean {
+    if (!searchText) {
+      return true;
+    }
+    return input.toLowerCase().includes(searchText.toLowerCase());
+  }
+  private isPaymentMatchesSearch(
+    payment: Payment,
+    searchText: string,
+    startDate: Moment,
+    endDate: Moment
+  ): boolean {
+    const isTextMatch =
+      this.isTextMatch(payment.supplier, searchText) ||
+      this.isTextMatch(payment.description, searchText);
+    if (isTextMatch) {
+      return true;
+    }
+    const dateMoment = moment(payment.date);
+    const isDateMatch = dateMoment.isBetween(startDate, endDate, 'day', '[]'); //including edges, match by date.
+
+    return isDateMatch;
+  }
+  filterPayments(searchText: string, startDate: Moment, endDate: Moment) {
+    if (!searchText && !startDate && !endDate) {
+      this.payments.next(this.allPayments);
+      this.paymentStatusToSum.next(
+        this.getPaymentsStatusToSum(this.allPayments)
+      );
+      return;
+    }
+    const filteredPayments: Payment[] = this.allPayments.filter((payment) =>
+      this.isPaymentMatchesSearch(payment, searchText, startDate, endDate)
+    );
+    this.payments.next(filteredPayments);
+    this.paymentStatusToSum.next(this.getPaymentsStatusToSum(filteredPayments));
   }
 }

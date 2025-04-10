@@ -1,4 +1,4 @@
-<!-- @if(this.receiptsViewMode() === 'table-only'){
+@if(this.receiptsViewMode() === 'table-only'){
 <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
 } @else {
 <div class="receipts-display-container">
@@ -9,6 +9,6 @@
 
 <app-view-mode (view-mode-change)="onViewModeChanged($event)"></app-view-mode>
 
-<app-payment-status-summary></app-payment-status-summary> -->
+<app-payment-status-summary></app-payment-status-summary>
 
 <app-search-bar></app-search-bar>

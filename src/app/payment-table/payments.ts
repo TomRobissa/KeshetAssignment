@@ -3,7 +3,7 @@ import { Payment } from '../../shared/Payment';
 export const PAYMENTS: Payment[] = [
   {
     id: 1,
-    date: '2025-04-05',
+    date: '2025-04-10',
     status: 'pending',
     description: 'יום צילום',
     supplier: 'ספק א',

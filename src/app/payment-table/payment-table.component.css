@@ -19,11 +19,11 @@
 }
 
 .payment-table thead th.cost.table-only {
-  width: 10%;
+  width: 15%;
 }
 
 .payment-table thead th.cost.table-pdf-preview-split {
-  width: 15%;
+  width: 25%;
 }
 
 .payment-table thead th.description.table-only {

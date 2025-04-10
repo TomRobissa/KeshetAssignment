@@ -1,5 +1,5 @@
 <!-- Date Range Picker -->
-<div class="filter-container-section">
+<section class="search-bar-section">
   <section class="date-picker-section">
     <img
       src="../../assets/date-picker.svg"
@@ -19,4 +19,16 @@
       [value]="dateRangeDisplay"
     />
   </section>
-</div>
+
+  <!-- Search Query -->
+  <section class="search-query-section">
+    <img width="32px" height="32px" src="../../assets/magnifying-glass.svg" />
+    <input [(ngModel)]="searchText" class="search-query" placeholder="חפש..." />
+  </section>
+  <img
+    (click)="onSearch($event)"
+    width="32px"
+    height="32px"
+    src="../../assets/filter-icon.svg"
+  />
+</section>

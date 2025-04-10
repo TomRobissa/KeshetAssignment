@@ -7,6 +7,7 @@ import {
   DaterangepickerDirective,
   NgxDaterangepickerMd,
 } from 'ngx-daterangepicker-material';
+import { PaymentsService } from '../services/payments.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -19,43 +20,25 @@ import {
 export class SearchBarComponent {
   @ViewChild(DaterangepickerDirective, { static: false })
   pickerDirective!: DaterangepickerDirective;
-  dropdownOpen = false;
-  filters = { supplier: true, invoice: false };
   searchText = '';
-
   selectedDateRange = {
     startDate: moment(),
     endDate: moment(),
   };
 
+  constructor(private paymentsService: PaymentsService) {}
+
   openDatePicker() {
     this.pickerDirective.open();
   }
 
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
-
-  enforceCheckboxRule() {
-    if (!this.filters.supplier && !this.filters.invoice) {
-      this.filters.supplier = true;
-    }
-  }
-
-  isSearchEnabled(): boolean {
-    return this.filters.supplier || this.filters.invoice;
-  }
-
-  onSearch() {
-    if (!this.isSearchEnabled()) return;
-
-    const filtersApplied = {
-      searchText: this.searchText,
-      filterBySupplier: this.filters.supplier,
-      filterByInvoice: this.filters.invoice,
-      startDate: this.selectedDateRange.startDate.toDate(),
-      endDate: this.selectedDateRange.endDate.toDate(),
-    };
+  onSearch(event: any) {
+    this.paymentsService.filterPayments(
+      this.searchText,
+      this.selectedDateRange.startDate,
+      this.selectedDateRange.endDate
+    );
+    event.preventDefault();
   }
 
   onDateRangeChange(event: any) {
@@ -63,7 +46,6 @@ export class SearchBarComponent {
       startDate: event.startDate,
       endDate: event.endDate,
     };
-    this.onSearch(); // trigger search automatically if needed
   }
 
   get dateRangeDisplay(): string {
