@@ -1,14 +1,34 @@
-@if(this.receiptsViewMode() === 'table-only'){
+<!-- @if(this.receiptsViewMode() === 'table-only'){
 <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
 } @else {
 <div class="receipts-display-container">
   <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
   <app-pdf-swiper />
 </div>
-}
+} -->
 
-<app-view-mode (view-mode-change)="onViewModeChanged($event)"></app-view-mode>
 
-<app-payment-status-summary></app-payment-status-summary>
 
-<app-search-bar></app-search-bar>
+<header>
+  <section class="header-background-section">
+    <img src="../assets/login.svg" alt="login icon" width="60px" height="60px">
+    <img src="../assets/Keshet-icon.png" alt="Keshet-icon" width="60px" height="60px">
+  </section>
+</header>
+
+<body>
+  <section class="app-overlay">
+    <section class="app-overlay-section">
+      <app-view-mode (view-mode-change)="onViewModeChanged($event)"></app-view-mode>
+    </section>
+    <section class="app-overlay-section search-bar-container">
+      <app-search-bar></app-search-bar>
+    </section>
+    <section class="app-overlay-section payment-status-summary-container">
+      <app-payment-status-summary></app-payment-status-summary>
+    </section>
+  </section>
+  <main>
+
+  </main>
+</body>

@@ -2,8 +2,11 @@ section.search-bar-section {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  gap: 5%;
-  padding: 15px 30px;
+  gap: 35px;
+  padding: 0 20px;
+  height: 100%;
+  justify-content: flex-start;
+  background-color: white;
 }
 
 section.date-picker-section,
@@ -13,7 +16,7 @@ section.search-query-section {
   gap: 5%;
   padding: 15px 30px;
   border: 2px solid black;
-  border-radius: 20px;
+  border-radius: 25px;
   direction: rtl;
 }
 

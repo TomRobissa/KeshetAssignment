@@ -5,3 +5,33 @@
     max-height: 65vh;
     overflow-y: scroll;
 }
+
+section.header-background-section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 10vh;
+    background-color: #3b73ee;
+    padding: 10px;
+}
+
+body{
+    background-color: #e5e9f2;
+}
+
+.app-overlay{
+    display: flex;
+    flex-direction: row;
+    padding:0 20px;
+    justify-content: flex-start;
+    height: 8vh;
+}
+.app-overlay > section {
+    box-shadow: 0 4px 2px -2px gray;
+  -moz-box-shadow: 0 4px 4px gray;
+  -webkit-box-shadow: 0 4px 4px gray;
+}
+
+.search-bar-container{
+    margin-left:15px;
+}

@@ -1,16 +1,8 @@
 <section class="view-mode-section">
-  <img
-    (click)="this.onViewModeClicked('table-only')"
-    [class.active]="this.receiptsViewMode === 'table-only'"
-    src="../../assets/table-only_view-mode.svg"
-    width="64px"
-    height="64px"
-  />
-  <img
-    (click)="this.onViewModeClicked('table-pdf-preview-split')"
+  <img (click)="this.onViewModeClicked('table-pdf-preview-split')"
     [class.active]="this.receiptsViewMode === 'table-pdf-preview-split'"
-    src="../../assets/table-pdf-preview-split_view-mode.svg"
-    width="64px"
-    height="64px"
-  />
+    src="../../assets/table-pdf-preview-split_view-mode.svg" width="32px" height="32px" />
+  <img style="margin-bottom: 4px;" (click)="this.onViewModeClicked('table-only')"
+    [class.active]="this.receiptsViewMode === 'table-only'" src="../../assets/table-only_view-mode.svg" width="32px"
+    height="32px" />
 </section>

@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, OnInit, output, signal } from '@angular/core';
 import { ReceiptsViewMode } from '../../shared/ReceiptViewMode';
 import { PAYMENTS } from './payments';
 import { Payment } from '../../shared/Payment';
@@ -10,7 +10,7 @@ import { PaymentsService } from '../services/payments.service';
   templateUrl: './payment-table.component.html',
   styleUrls: ['./payment-table.component.css'],
 })
-export class PaymentTableComponent {
+export class PaymentTableComponent implements OnInit{
   viewMode = input.required<ReceiptsViewMode>();
   selectedPaymentId = signal<number>(1);
   payments = signal<Payment[]>([]);
