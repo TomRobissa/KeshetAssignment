@@ -11,6 +11,7 @@ import { PaymentTableComponent } from './payment-table/payment-table.component';
 import { ReceiptsViewMode } from '../shared/ReceiptViewMode';
 import { ViewModeComponent } from './view-mode/view-mode.component';
 import { PaymentStatusSummaryComponent } from './payment-status-summary/payment-status-summary.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 register();
 
@@ -21,6 +22,7 @@ register();
     PaymentTableComponent,
     ViewModeComponent,
     PaymentStatusSummaryComponent,
+    SearchBarComponent,
   ],
   templateUrl: './app.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

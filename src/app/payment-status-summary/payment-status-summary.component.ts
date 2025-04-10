@@ -1,6 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PaymentsService } from '../services/payments.service';
-import { PaymentStatus } from '../../shared/Payment';
 
 @Component({
   selector: 'app-payment-status-summary',

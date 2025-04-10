@@ -1,0 +1,22 @@
+<!-- Date Range Picker -->
+<div class="filter-container-section">
+  <section class="date-picker-section">
+    <img
+      src="../../assets/date-picker.svg"
+      width="32px"
+      height="32px"
+      class="ngx-daterangepicker-action"
+      (click)="openDatePicker()"
+    />
+    <input
+      ngxDaterangepickerMd
+      readonly
+      [closeOnAutoApply]="true"
+      [linkedCalendars]="true"
+      [locale]="{ applyLabel: 'בחר', format: 'DD.MM.YYYY' }"
+      (choosedDate)="onDateRangeChange($event)"
+      class="date-picker"
+      [value]="dateRangeDisplay"
+    />
+  </section>
+</div>
