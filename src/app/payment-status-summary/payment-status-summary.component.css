@@ -1,0 +1,29 @@
+.status-sum-article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex:1;
+}
+.payment-status-summary-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.payment-status-summary-section{
+    width: 100%;
+    height: 100%; 
+}
+
+.inner-status-sum{
+    border-left:1px solid grey;
+}
+.first-status-sum{
+    font-weight: bold;
+}
+.status-sum{
+    font-size: 1.5rem;
+}

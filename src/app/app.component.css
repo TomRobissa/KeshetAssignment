@@ -1,3 +1,13 @@
+.app-container{
+    background-color: #e5e9f2;
+    height: 100vh;
+}
+.app-overlay-wrapper{
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    width: 100%;
+}
 .receipts-display-container{
     display: flex;
     flex-direction: row-reverse;
@@ -15,23 +25,38 @@ section.header-background-section {
     padding: 10px;
 }
 
-body{
-    background-color: #e5e9f2;
-}
 
 .app-overlay{
     display: flex;
     flex-direction: row;
     padding:0 20px;
-    justify-content: flex-start;
+    justify-content: space-between;
     height: 8vh;
+    gap: 5vw;
 }
-.app-overlay > section {
+.app-overlay-left-inner-section, .app-overlay-right-section {
     box-shadow: 0 4px 2px -2px gray;
   -moz-box-shadow: 0 4px 4px gray;
   -webkit-box-shadow: 0 4px 4px gray;
 }
+.view-mode-container{
+    background-color: #e5e9f2;
+}
+
+.app-overlay-left-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 15px;
+    flex-grow:5;
+}
+.app-overlay-right-section{
+    flex-grow:3;
+}
+.app-overlay-right-section, .search-bar-container{
+    background-color: white;
+}
 
 .search-bar-container{
-    margin-left:15px;
+    flex-grow:1;
 }

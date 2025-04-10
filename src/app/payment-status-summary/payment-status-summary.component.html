@@ -1,8 +1,13 @@
 <section class="payment-status-summary-section">
-  @for (status of paymentStatusToSum(); track status) {
-  <article class="status-sum-article">
-    <span> {{ paymentStatusToSum()[status] }} </span>
-    <p>{{ status }}</p>
-  </article>
-  }
+  <div class="payment-status-summary-container">
+    @for (status of paymentStatusToSum(); track status) {
+    <article class="status-sum-article" [class.inner-status-sum]="!$last" [class.first-status-sum]="$first">
+      @if(last){
+      {{status[0]}}
+      }
+      <span class="status-sum"> {{status[1] }} </span>
+      <p class="status-description">{{ getPaymentStatusText(status) }}</p>
+    </article>
+    }
+  </div>
 </section>

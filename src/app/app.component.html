@@ -8,27 +8,32 @@
 } -->
 
 
-
-<header>
-  <section class="header-background-section">
-    <img src="../assets/login.svg" alt="login icon" width="60px" height="60px">
-    <img src="../assets/Keshet-icon.png" alt="Keshet-icon" width="60px" height="60px">
-  </section>
-</header>
-
-<body>
-  <section class="app-overlay">
-    <section class="app-overlay-section">
-      <app-view-mode (view-mode-change)="onViewModeChanged($event)"></app-view-mode>
+<div class="app-container">
+  <header>
+    <section class="header-background-section">
+      <img src="../assets/login.svg" alt="login icon" width="60px" height="60px">
+      <img src="../assets/Keshet-icon.png" alt="Keshet-icon" width="60px" height="60px">
     </section>
-    <section class="app-overlay-section search-bar-container">
-      <app-search-bar></app-search-bar>
-    </section>
-    <section class="app-overlay-section payment-status-summary-container">
-      <app-payment-status-summary></app-payment-status-summary>
-    </section>
-  </section>
-  <main>
+  </header>
 
-  </main>
-</body>
+  <body>
+    <div class="app-overlay-wrapper">
+      <section class="app-overlay">
+        <section class="app-overlay-left-section">
+          <div class="app-overlay-left-inner-section view-mode-container">
+            <app-view-mode (view-mode-change)="onViewModeChanged($event)"></app-view-mode>
+          </div>
+          <div class="app-overlay-left-inner-section search-bar-container">
+            <app-search-bar></app-search-bar>
+          </div>
+        </section>
+        <section class="app-overlay-right-section">
+          <app-payment-status-summary></app-payment-status-summary>
+        </section>
+      </section>
+    </div>
+    <main>
+
+    </main>
+  </body>
+</div>
