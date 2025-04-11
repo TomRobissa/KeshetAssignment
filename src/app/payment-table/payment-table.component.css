@@ -1,10 +1,10 @@
 .payment-table table {
   width: 100%;
+  height: 100%;
   table-layout: fixed;
-  background: white;
   direction: rtl;
   z-index: 10;
-  position: relative;
+  position: relative; 
 }
 
 .payment-table thead {

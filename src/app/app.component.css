@@ -55,7 +55,7 @@ section.header-background-section {
 .app-overlay-right-section{
     flex-grow:3;
 }
-.app-overlay-right-section, .search-bar-container{
+.app-overlay-right-section, .search-bar-container, .app-table-container{
     background-color: white;
 }
 
@@ -64,5 +64,4 @@ section.header-background-section {
 }
 .app-swiper-container{
     width: 45vw;
-    height: 75.5vh;
 }

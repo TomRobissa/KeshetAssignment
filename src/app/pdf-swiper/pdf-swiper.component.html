@@ -5,7 +5,7 @@
     <swiper-slide>
       <div class="pdf-viewer-container">
         <pdf-viewer [src]="this.pdfPath()" (after-load-complete)="onPdfLoadComplete($event)" [render-text]="true"
-          [show-all]="false" [original-size]="false" [page]="currentPage">
+          [show-all]="false" [original-size]="true" [page]="currentPage">
         </pdf-viewer>
       </div>
     </swiper-slide>

@@ -23,13 +23,17 @@
     </section>
     <main>
       @if(this.receiptsViewMode() === 'table-only'){
-      <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
+      <div class="app-table-container">
+        <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
+      </div>
       } @else {
       <div class="receipts-display-container">
         <div class="app-swiper-container">
           <app-pdf-swiper />
         </div>
-        <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
+        <div class="app-table-container">
+          <app-payment-table [viewMode]="this.receiptsViewMode()"></app-payment-table>
+        </div>
       </div>
       }
 
