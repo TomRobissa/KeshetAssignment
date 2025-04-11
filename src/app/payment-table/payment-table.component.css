@@ -3,6 +3,8 @@
   table-layout: fixed;
   background: white;
   direction: rtl;
+  z-index: 10;
+  position: relative;
 }
 
 .payment-table thead {
@@ -19,11 +21,11 @@
 }
 
 .payment-table thead th.cost.table-only {
-  width: 6rem;
+  width: 6%;
 }
 
 .payment-table thead th.cost.table-pdf-preview-split {
-  width: 10rem;
+  width: 10%;
 }
 
 .payment-table thead th.description.table-only {

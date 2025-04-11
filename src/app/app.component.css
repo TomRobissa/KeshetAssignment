@@ -1,19 +1,21 @@
 .app-container{
     background-color: #e5e9f2;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-.app-overlay-wrapper{
-    position: absolute;
-    top: 8vh;
-    left: 0;
-    width: 100%;
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding:0 20px;
+    margin-top: -35px;
+    flex-grow:1;
 }
 .receipts-display-container{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     gap: 1rem;
-    max-height: 65vh;
-    overflow-y: scroll;
 }
 
 section.header-background-section {
@@ -29,7 +31,6 @@ section.header-background-section {
 .app-overlay{
     display: flex;
     flex-direction: row;
-    padding:0 20px;
     justify-content: space-between;
     height: 8vh;
     gap: 5vw;
@@ -60,4 +61,8 @@ section.header-background-section {
 
 .search-bar-container{
     flex-grow:1;
+}
+.app-swiper-container{
+    width: 45vw;
+    height: 75.5vh;
 }
