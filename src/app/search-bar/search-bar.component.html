@@ -1,23 +1,11 @@
 <!-- Date Range Picker -->
 <section class="search-bar-section">
   <section class="date-picker-section">
-    <img
-      src="../../assets/date-picker.svg"
-      width="32px"
-      height="32px"
-      class="ngx-daterangepicker-action"
-      (click)="openDatePicker()"
-    />
-    <input
-      ngxDaterangepickerMd
-      readonly
-      [closeOnAutoApply]="true"
-      [linkedCalendars]="true"
-      [locale]="{ applyLabel: 'בחר', format: 'DD.MM.YYYY' }"
-      (choosedDate)="onDateRangeChange($event)"
-      class="date-picker"
-      [value]="dateRangeDisplay"
-    />
+    <img src="../../assets/date-picker.svg" width="32px" height="32px" class="ngx-daterangepicker-action"
+      (click)="openDatePicker()" />
+    <input ngxDaterangepickerMd readonly [closeOnAutoApply]="true" [linkedCalendars]="true"
+      [locale]="{ applyLabel: 'בחר', format: 'DD.MM.YYYY' }" (change)="onDateRangeChange($event)" class="date-picker"
+      [value]="dateRangeDisplay" />
   </section>
 
   <!-- Search Query -->
@@ -25,10 +13,5 @@
     <img width="32px" height="32px" src="../../assets/magnifying-glass.svg" />
     <input [(ngModel)]="searchText" class="search-query" placeholder="חפש..." />
   </section>
-  <img
-    (click)="onSearch($event)"
-    width="32px"
-    height="32px"
-    src="../../assets/filter-icon.svg"
-  />
+  <img (click)="onSearch($event)" width="32px" height="32px" src="../../assets/filter-icon.svg" />
 </section>
